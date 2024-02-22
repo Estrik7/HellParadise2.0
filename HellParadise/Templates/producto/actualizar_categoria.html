@@ -1,0 +1,24 @@
+{% include 'inc/header.html' %}
+    <div class="ui container">
+    <h1>Registro de categoria</h1>
+<form action="" method="POST" class="ui form">
+    {% csrf_token %}
+    {%for a in un_categoria %}
+    <div class="two filds">
+        <div class="field">
+            <label for="">Nombre</label>
+            <input type="text" name="nombre" id="nombre" value= "{{a.nombre}}">
+        </div>
+    </div>
+    {%endfor%}
+    <button type="submit" class="ui blue basic button">Guardar informacion</button>
+    
+</form>
+</div>
+</div>
+
+{% include 'inc/footer.html'  %}
+    </div>
+    
+</div>
+{% include 'inc/footer.html'  %}

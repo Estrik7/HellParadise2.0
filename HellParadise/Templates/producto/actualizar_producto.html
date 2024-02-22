@@ -1,0 +1,51 @@
+{% include 'inc/header.html' %}
+<div class="ui container">
+    <h1>Actualización de producto</h1>
+    <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="two fields">
+            <div class="field">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" value="{{producto.nombre}}" required>
+            </div>
+            <div class="field">
+                <label for="descripcion">Descripción del producto</label>
+                <input type="text" name="descripcion" id="descripcion" value="{{producto.descripcion}}" required>
+            </div>
+        </div>
+        <div class="three fields">
+            <div class="field">
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" id="precio" value="{{producto.precio}}" required>
+            </div>
+            <div class="field">
+                <label for="stock">Stock</label>
+                <input type="number" name="stock" id="stock" value="{{producto.stock}}" required>
+            </div>
+            <div class="field">
+                <label for="categoria_id">Categoría:</label>
+                <select name="categoria_id" id="categoria_id" class="ui fluid search dropdown" required>
+                    {% for b in categoria %}
+                    <option value="{{b.id}}">{{b.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="three fields">
+            <div class="field">
+                <label for="imagenes">Imagen</label>
+                <input type="file" accept="image/*" name="imagenes" id="imagenes">
+            </div>
+            <div class="field">
+                <label for="talla">Talla</label>
+                <input type="text" name="talla" id="talla" value="{{producto.talla}}">
+            </div>
+            <div class="field">
+                <label for="color">Color</label>
+                <input type="text" name="color" id="color" value="{{producto.color}}">
+            </div>
+        </div>
+        <button type="submit" class="ui blue basic button">Guardar información</button>
+    </form>
+</div>
+{% include 'inc/footer.html' %}

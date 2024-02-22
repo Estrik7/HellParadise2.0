@@ -1,0 +1,54 @@
+{% include 'inc/header.html' %}
+<div class="ui container">
+    <h1>Registro de producto</h1>
+<form action="" method="POST" class="ui form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="two fields">
+        <div class="field">
+            <label for="">Nombre</label>
+            <input type="text" name="nombre" id="nombre">
+        </div>
+        <div class="field">
+            <label for="">Descripcion del producto</label>
+            <input type="text" name="descripcion" id="descripcion">
+        </div>
+    </div>
+    <div class="three fields">
+        <div class="field">
+            <label for="">Precio</label>
+            <input type="number" name="precio" id="precio">
+        </div>
+        <div class="field">
+            <label for="">Stock</label>
+            <input type="number" name="stock" id="stock">
+        </div>
+        <div class="field">
+            <label for="">Categoria:</label>
+            <select name="categoria_id" id="categoria_id" class="ui fluid search dropdown">
+                {% for b in categoria %}
+                    <option value="{{b.id}}">{{b.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="three fields">
+        <div class="field">
+            <label for="">Imagenes</label>
+            <input type="file" accept="image/*" name="imagenes" id="imagenes">
+        </div>
+        <div class="field">
+            <label for="">Talla</label>
+            <input type="text" name="talla" id="talla">
+        </div>
+        <div class="field">
+            <label for="">Color</label>
+            <input type="text" name="color" id="color">
+        </div>
+    </div>
+    <button type="submit" class="ui green basic button">Guardar informacion</button>
+
+</form>
+</div>
+</div>
+
+{% include 'inc/footer.html'  %}

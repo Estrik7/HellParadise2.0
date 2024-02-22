@@ -1,0 +1,44 @@
+{% load static %}
+{% include 'inc/header.html' %}
+
+    <h1 style="text-align: center;">Listado de categorias</h1>
+    
+    <br><br>
+
+    <div class="ui container">
+        <table class="ui celled table">
+            <thead>
+                <th>Nombre</th>
+            </tr></thead>
+            <tbody>
+                {% for a in categorias %}
+                <tr>
+                    <td>{{a.nombre}}</td>
+                    <td>
+                        <a href="/producto/actualizar_categoria/{{ a.id }}">
+                            <i class="edit icon"></i>
+                        </a>
+                        {% comment %} <i onclick="borrar('{{ a.id }}')" class="trash icon"></i> {% endcomment %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="center" ></div>
+    <script>
+
+        function borrar(id){
+            alert("El valor a borrar es:" +id)
+            var respuesta = confirm("Desea borrar el registro del numero: " +id)
+            if(respuesta){
+                location.href = "/moto/borrarmoto/" + id
+            }
+            else{
+    
+                alert("El producto no se va borrar esta a salvo")
+            }
+        }
+    </script>
+
+{%include 'inc/footer.html'%}

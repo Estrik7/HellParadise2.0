@@ -1,0 +1,56 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEll PARADISE</title>
+    <link rel="stylesheet" href="{%  static 'css/semantic.css' %}">
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/semantic.js' %}"></script>
+</head>
+    <!-- Header -->
+    <header>
+
+        <div class="ui massive stackable menu">
+            <a href="/home/" class="active item">
+            Home
+            </a>
+            <a href="/insertar_producto/" class="item">
+            Insertar producto(trabajo en progreso)
+            </a>
+            <a href="/producto/listado_producto/" class="item">
+                Listado producto(Por desarrollar)
+            </a>
+            <a href="/insertar_categoria/" class="item">
+                Insertar categoria
+            </a>
+            <a href="/producto/listado_categoria/" class="item">
+                Listado categoria 
+            </a>
+            <div class="right menu">
+                <div class="ui pointing dropdown link item">
+                  <i class="user circle icon"></i>
+                  <div class="menu">
+                    
+                    {% if request.user.is_autenticated %}
+                    <a href="/logout/" class="item">Log Out</a>
+                    {% else %}
+                    <a href="/registro_usuario/" class="item">Registro</a>
+                    <a href="/login/" class="item">Log In</a>
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</span>
+</a>
+</div>
+
+</div>
+<div class="ui segment">
+<p></p>
+</div>
+<body>

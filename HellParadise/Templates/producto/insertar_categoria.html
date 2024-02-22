@@ -1,0 +1,17 @@
+{% include 'inc/header.html' %}
+
+    <div class="ui container">
+        <h1>Registro de categoria</h1>
+        <form action="" method="POST" class="ui form">
+            {% csrf_token %}
+            <div class="field">
+                <label for="">Nombre de categoria</label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+            <div>
+                <button type="submit" class="ui green basic button">Guardar informacion</button>
+            </div>
+        </form>
+    </div>
+
+{% include 'inc/footer.html'  %}

@@ -1,0 +1,81 @@
+{% load static %}
+{% include 'inc/header.html' %}
+
+<h1 style="text-align: center;">Listado de productos</h1>
+
+<br><br>
+
+<div class="ui container center aligned">
+
+    <div class="ui three stackable cards">
+        {% for a in productos %}
+            <div class="custom-card card">
+                <div class="image">
+                    <img src="{{ a.imagenes.url }}" alt="{{ a.nombre }}">
+                    <div class="zoom-box"></div> <!-- Agregamos el cuadro de zoom aquí -->
+                </div>
+                <div class="content">
+                    <div class="header">{{ a.nombre }}</div>
+                    <div class="description">
+                        {{ a.descripcion }}
+                    </div>
+                </div>
+                <div class="extra content">
+                    <br>
+                    <span class="right floated">
+                        Stock:{{ a.stock }}
+                    </span>
+                    <span style="font-weight: 1000;">
+                        Precio:{{ a.precio }}
+                    </span>
+                    <br>
+                    <br>
+                    <span class="right floated">
+                        Color:{{ a.color }}
+                    </span>
+                </div>
+                <a class="ui inverted green button" href="/producto/actualizar_producto/{{ a.id }}">
+                    Editar
+                </a>
+                <a class="ui inverted red button" onclick="borrar('{{ a.id }}')">Eliminar</a>
+            </div>
+        {% endfor %}
+        <div class="center"></div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const customCards = document.querySelectorAll('.custom-card');
+      
+          customCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+              const zoomBox = card.querySelector('.zoom-box');
+              const boundingBox = card.querySelector('.image').getBoundingClientRect();
+      
+              const offsetX = e.clientX - boundingBox.left;
+              const offsetY = e.clientY - boundingBox.top;
+      
+              const percentageX = (offsetX / boundingBox.width) * 100;
+              const percentageY = (offsetY / boundingBox.height) * 100;
+      
+              zoomBox.style.backgroundPosition = `${percentageX}% ${percentageY}%`;
+            });
+          });
+        });
+      </script>
+
+<script>
+    function borrar(id) {
+        alert("El valor a borrar es: " + id);
+        var respuesta = confirm("¿Desea borrar el registro del número: " + id + "?");
+        if (respuesta) {
+            location.href = "/producto/eliminar_producto/" + id;
+        } else {
+            alert("El producto no se va a borrar, está a salvo.");
+        }
+    }
+</script>
+
+
+{% include 'inc/footer.html' %}
