@@ -1,6 +1,7 @@
+{% extends 'layourts/base.html' %}
 {% load static %}
-{% include 'inc/header.html' %}
-
+{% block title %}Lista-C{% endblock title %}
+{% block content %}
     <h1 style="text-align: center;">Listado de categorias</h1>
     
     <br><br>
@@ -18,7 +19,7 @@
                         <a href="/producto/actualizar_categoria/{{ a.id }}">
                             <i class="edit icon"></i>
                         </a>
-                        {% comment %} <i onclick="borrar('{{ a.id }}')" class="trash icon"></i> {% endcomment %}
+                        <i onclick="borrar('{{ a.id }}','{{a.nombre}}')" class="trash icon"></i>
                     </td>
                 </tr>
                 {% endfor %}
@@ -26,19 +27,28 @@
         </table>
     </div>
     <div class="center" ></div>
-    <script>
-
-        function borrar(id){
-            alert("El valor a borrar es:" +id)
-            var respuesta = confirm("Desea borrar el registro del numero: " +id)
-            if(respuesta){
-                location.href = "/moto/borrarmoto/" + id
+    {% block scripts %}
+        <script>
+            function borrar(id,nombre){
+            swal({
+                title: `¿Estas seguro que deseas borrar la categoria ${nombre} ?`,
+                text: "Una vez eliminado no se podra recuperar",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = '/producto/borrar/' + id;
+                } else {
+                    swal({
+                        icon:'error',
+                        text: `la categoria ${nombre} no se eliminara`
+                });
             }
-            else{
-    
-                alert("El producto no se va borrar esta a salvo")
-            }
+            });
         }
-    </script>
-
-{%include 'inc/footer.html'%}
+        </script> 
+        <script src="{% static 'js/sweetalert.min.js' %}"></script>
+    {% endblock %}
+{% endblock content %}
