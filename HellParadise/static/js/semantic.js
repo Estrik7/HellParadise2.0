@@ -17,7 +17,9 @@
  * http://opensource.org/licenses/MIT
  *
  */
-
+$(".align.justify.icon").click(function(){
+  $('.ui.sidebar').sidebar('toggle');
+});
 ;(function ($, window, document, undefined) {
 
 $.site = $.fn.site = function(parameters) {

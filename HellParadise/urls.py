@@ -15,8 +15,8 @@ urlpatterns = [
     path('producto/listado_categoria/', views.listado_categoria, name="lista_categoria"),
     path('producto/actualizar_categoria/<int:id_categoria>',views.actualizar_categoria, name="actualizar_categoria"),
     path('producto/actualizar_producto/<int:id_producto>',views.actualizar_producto, name="actualizar_producto"),
-    path('producto/eliminar_producto/<int:id_producto>',views.eliminar_producto, name="eliminar_producto"),
-    path('producto/borrar/<int:id_categoria>/<str:nombre>',views.eliminar_categoria, name="eliminar_categoria"),
+    path('producto/borrar/<int:id_producto>',views.eliminar_producto, name="eliminar_producto"),
+    path('producto/borrar/<int:id_categoria>',views.eliminar_categoria, name="eliminar_categoria"),
     path('producto/listado_producto/', views.listado_producto, name="lista_producto"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

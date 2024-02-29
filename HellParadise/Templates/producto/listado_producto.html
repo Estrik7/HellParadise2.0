@@ -6,41 +6,60 @@
 
     <br><br>
 
-    <div class="ui container center aligned">
-
-        <div class="ui three stackable cards">
-            {% for a in productos %}
-                <div class="custom-card card">
-                    <div class="image">
-                        <img src="{{ a.imagenes.url }}" alt="{{ a.nombre }}">
-                        <div class="zoom-box"></div> <!-- Agregamos el cuadro de zoom aquí -->
-                    </div>
-                    <div class="content">
-                        <div class="header">{{ a.nombre }}</div>
-                        <div class="description">
-                            {{ a.descripcion }}
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <br>
-                        <span class="right floated">
-                            Stock:{{ a.stock }}
-                        </span>
-                        <span style="font-weight: 1000;">
-                            Precio:{{ a.precio }}
-                        </span>
-                        <br>
-                        <br>
-                        <span class="right floated">
-                            Color:{{ a.color }}
-                        </span>
-                    </div>
-                    <a class="ui inverted green button" href="/producto/actualizar_producto/{{ a.id }}">
-                        Editar
-                    </a>
-                    <a class="ui inverted red button" onclick="borrar('{{ a.id }}')">Eliminar</a>
-                </div>
-            {% endfor %}
+        <div class="ui container center aligned">
+            <table class="ui celled table">
+                <thead>
+                  <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Color</th>
+                    <th>Editar o eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for a in productos %}
+                  <tr>
+                    <td><img src="{{ a.imagenes.url }}" alt="{{ a.nombre }}" style="width: 50px; height: auto;" ></td>
+                    <td>{{ a.nombre }}</td>
+                    <td>{{ a.descripcion }}</td>
+                    <td>{{ a.stock }}</td>
+                    <td>{{ a.precio }}</td>
+                    <td>{{ a.color }}</td>
+                    <td>
+                        <a href="/producto/actualizar_producto/{{ a.id }}">
+                            <i class="edit icon"></i>
+                        </a>
+                        <i onclick="borrar('{{ a.id }}','{{a.nombre}}')" class="trash icon"></i>
+                        <script>
+                            function borrar(id,nombre){
+                                swal({
+                                    title: `¿Estas seguro que deseas borrar el producto ${nombre} ?`,
+                                    text: "Una vez eliminado no se podra recuperar",
+                                    icon: "warning",
+                                    buttons: true,
+                                    dangerMode: true,
+                                })
+                                .then((willDelete) => {
+                                    if (willDelete) {
+                                        window.location.href = 'producto/borrar/' + id;
+                                    } else {
+                                        swal({
+                                            icon:'error',
+                                            text: `El Producto ${nombre} no se eliminara`
+                                    });
+                                    }
+                                });
+                            }
+                        </script> 
+                    </td>
+                  </tr>
+                 {% endfor %}
+                </tbody>
+              </table>
+        </div>
             <div class="center"></div>
             {% block scripts %}
                 <script>
@@ -63,16 +82,7 @@
                     });
                     });
                 </script>
-                <script>
-                    function borrar(id) {
-                        alert("El valor a borrar es: " + id);
-                        var respuesta = confirm("¿Desea borrar el registro del número: " + id + "?");
-                        if (respuesta) {
-                            location.href = "/producto/eliminar_producto/" + id;
-                        } else {
-                            alert("El producto no se va a borrar, está a salvo.");
-                        }
-                    }
-                </script>            
+                {% load static %}
+                <script src="{% static 'js/sweetalert.min.js' %}"></script>           
             {% endblock scripts %}
 {% endblock content %}
