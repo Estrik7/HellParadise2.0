@@ -9,6 +9,9 @@ from django.shortcuts import render, redirect
 from HellParadise.models import Categoria, Producto
 #endregion
 
+def index(request):
+    return render(request, 'index.html')
+
 #region usuario
 def registro_usuario(request):
     if request.method=='POST':
@@ -18,7 +21,7 @@ def registro_usuario(request):
             usuario.first_name = request.POST.get('nombre')
             usuario.last_name = request.POST.get('apellido')
             usuario.save()
-            return redirect('/login')
+            return redirect('login')
     else:
         return render(request, 'usuario/registro_usuario.html')
 
@@ -50,7 +53,7 @@ def insertar_categoria(request):
             categoria = Categoria()
             categoria.nombre = request.POST.get('nombre')
             categoria.save()
-            return redirect('/insertar_categoria/')
+            return redirect('insertar_categoria')
     else:
         categoria = Categoria.objects.all()
         return render(request, 'producto/insertar_categoria.html', {'categoria': categoria})
@@ -60,7 +63,7 @@ def actualizar_categoria(request, id_categoria):
                 categoria = Categoria.objects.get(id=id_categoria)
                 categoria.nombre = request.POST.get('nombre')
                 categoria.save()
-                return redirect('/producto/listado_categorias')
+                return redirect('lista_categoria')
         else:
             un_categoria = Categoria.objects.filter(id=id_categoria)
             return render(request, 'producto/actualizar_categoria.html', {'un_categoria': un_categoria})
@@ -72,7 +75,7 @@ def listado_categoria(request):
 def eliminar_categoria(request,id_categoria):
         eliminar_categoria = Categoria.objects.get(id=id_categoria)
         eliminar_categoria.delete()
-        return redirect('/producto/listado_categorias')
+        return redirect('lista_categoria')
 #endregion
 
 #region producto
@@ -130,7 +133,7 @@ def insertar_producto(request):
             # Guarda el producto en la base de datos
             producto.save()
 
-            return redirect('/insertar_producto/')
+            return redirect('insertar_producto')
     else:
         categorias = Categoria.objects.all()
         return render(request, 'producto/insertar_producto.html', {'categoria': categorias}) 
@@ -189,7 +192,7 @@ def actualizar_producto(request, id_producto):
         # Guarda el producto actualizado en la base de datos
         producto.save()
 
-        return redirect('/producto/listado_producto/')  # Reemplaza con tu URL de listado de productos
+        return redirect('producto/lista_producto')  # Reemplaza con tu URL de listado de productos
 
     categorias = Categoria.objects.all()
     return render(request, 'producto/actualizar_producto.html', {'categoria': categorias, 'producto': producto})
@@ -198,6 +201,6 @@ def actualizar_producto(request, id_producto):
 def eliminar_producto(request,id_producto):
     eliminar_producto = Producto.objects.get(id=id_producto)
     eliminar_producto.delete()
-    return redirect('/producto/listado_producto')
+    return redirect('lista_producto')
 
 #endregion

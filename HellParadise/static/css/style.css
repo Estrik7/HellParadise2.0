@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.ui.inverted.segment {
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+}
+
+.menu_2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.menu_2 .item {
+  justify-content: center;
+}
+
+#logo_menu {
+    width: 40px;
+    margin: 0 100px;
+}
+
+.slider {
+  background: white;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+  height: auto;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.slider::before,
+.slider::after {
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  content: "";
+  height: 100px;
+  position: absolute;
+  z-index: 2;
+}
+
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+
+.slider::before {
+  left: 0;
+  top: 0;
+}
+
+.slide-track {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  width: calc(250px * 14);
+}
+
+.slide {
+  height: auto;
+  width: 100%;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-250px * 7)); }
+}
+
+
+main {
+  padding-top: 75px;
+}
+
+
+
+/*-------------------  HOME   --------------------------------*/
+
+.index{
+  display: flex;
+}
+
+.man{
+  width:"100%";
+  height:"auto";
+  display: flex; 
+
+}
+
+.woman{
+  width:"100%";
+  height:"auto";
+  display: flex;
+}
+
+img {
+  max-width: 100%;
+  height: auto; /* Esto mantendrá la proporción de aspecto de las imágenes */
+}
+

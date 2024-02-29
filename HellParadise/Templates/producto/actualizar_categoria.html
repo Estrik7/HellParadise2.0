@@ -1,24 +1,18 @@
-{% include 'inc/header.html' %}
+{% extends 'layourts/base.html' %}
+{% block title %}Actualizar{% endblock title %}
+{% block content %}
     <div class="ui container">
-    <h1>Registro de categoria</h1>
-<form action="" method="POST" class="ui form">
-    {% csrf_token %}
-    {%for a in un_categoria %}
-    <div class="two filds">
-        <div class="field">
-            <label for="">Nombre</label>
-            <input type="text" name="nombre" id="nombre" value= "{{a.nombre}}">
+        <h1>Actualizar categoria</h1>
+    <form action="" method="POST" class="ui form">
+        {% csrf_token %}
+        {%for a in un_categoria %}
+        <div class="two filds">
+            <div class="field">
+                <label for="">Nombre</label>
+                <input type="text" name="nombre" id="nombre" value= "{{a.nombre}}">
+            </div>
         </div>
-    </div>
-    {%endfor%}
-    <button type="submit" class="ui blue basic button">Guardar informacion</button>
-    
-</form>
-</div>
-</div>
-
-{% include 'inc/footer.html'  %}
-    </div>
-    
-</div>
-{% include 'inc/footer.html'  %}
+        {%endfor%}
+        <button type="submit" class="ui blue basic button">Guardar informacion</button>     
+    </form>
+{% endblock content %}

@@ -1,5 +1,6 @@
-{% include 'inc/header.html' %}
-
+{% extends 'layourts/base.html' %}
+{% block title %}Categoria{% endblock title %}
+{% block content %}
     <div class="ui container">
         <h1>Registro de categoria</h1>
         <form action="" method="POST" class="ui form">
@@ -13,5 +14,4 @@
             </div>
         </form>
     </div>
-
-{% include 'inc/footer.html'  %}
+{% endblock content  %}

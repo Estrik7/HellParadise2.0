@@ -1,5 +1,6 @@
-{% include "inc/header.html" %}
-
+{% extends 'layourts/base.html' %}
+{% block title %}Registro{% endblock title %}
+{% block content %}
 <div class="ui container">
     <h1>Formulario de Registro de Usuario</h1>
     <form action="" method="POST" class="ui form">
@@ -32,4 +33,4 @@
     </form>
 </div>
 
-{% include "inc/footer.html" %}
+{% endblock content %}
