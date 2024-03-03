@@ -8,7 +8,7 @@
 
         <div class="ui container center aligned">
             <table class="ui celled table">
-                <thead>
+                <thead style="text-align: center;">
                   <tr>
                     <th>Imagen</th>
                     <th>Nombre</th>
@@ -19,7 +19,7 @@
                     <th>Editar o eliminar</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style="text-align: center;">
                 {% for a in productos %}
                   <tr>
                     <td><img src="{{ a.imagenes.url }}" alt="{{ a.nombre }}" style="width: 50px; height: auto;" ></td>
@@ -29,7 +29,7 @@
                     <td>{{ a.precio }}</td>
                     <td>{{ a.color }}</td>
                     <td>
-                        <a href="/producto/actualizar_producto/{{ a.id }}">
+                        <a href="{% url 'actualizar_producto' a.id %}">
                             <i class="edit icon"></i>
                         </a>
                         <i onclick="borrar('{{ a.id }}','{{a.nombre}}')" class="trash icon"></i>
@@ -44,7 +44,7 @@
                                 })
                                 .then((willDelete) => {
                                     if (willDelete) {
-                                        window.location.href = 'producto/borrar/' + id;
+                                        window.location.href = '/producto/borrar/' + id;
                                     } else {
                                         swal({
                                             icon:'error',

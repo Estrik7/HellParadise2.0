@@ -53,7 +53,7 @@ def insertar_categoria(request):
             categoria = Categoria()
             categoria.nombre = request.POST.get('nombre')
             categoria.save()
-            return redirect('insertar_categoria')
+            return redirect('lista_categoria')
     else:
         categoria = Categoria.objects.all()
         return render(request, 'producto/insertar_categoria.html', {'categoria': categoria})
@@ -116,7 +116,7 @@ def insertar_producto(request):
             
             # Convertir la imagen a modo RGB si está en modo RGBA
             if imagen_pillow.mode == 'RGBA':
-                imagen_pillow = imagen_pillow.convert('RGB')
+                imagen_pillow = imagen_pillow.convert('RGB').save('new.jpeg')
             
             imagen_pillow = imagen_pillow.resize((1200, 1200))
 
@@ -156,8 +156,10 @@ def listado_producto(request):
 
 def actualizar_producto(request, id_producto):
     producto = Producto.objects.get(id=id_producto)
+    print("antes de if")
 
-    if request.method == "POST" and request.FILES:
+    if request.method == "POST":
+        print("despues del if")
         # Recopila todos los datos del formulario
         producto.nombre = request.POST.get('nombre')
         producto.descripcion = request.POST.get('descripcion')
@@ -168,31 +170,35 @@ def actualizar_producto(request, id_producto):
         producto.color = request.POST.get('color')
 
         # Procesa la imagen con Pillow si es necesario
-        imagen = request.FILES['imagenes']
-        imagen_pillow = Image.open(imagen)
+        
+        if request.POST.get('imagenes') != "":
+            imagen = request.FILES['imagenes']
+            imagen_pillow = Image.open(imagen).convert('RGB')
 
-        # Convertir la imagen a modo RGB si está en modo RGBA
-        if imagen_pillow.mode == 'RGBA':
-            imagen_pillow = imagen_pillow.convert('RGB')
+            # Convertir la imagen a modo RGB si está en modo RGBA
+            if imagen_pillow.mode == 'RGBA':
+                imagen_pillow = imagen_pillow.convert('RGB').save('new.jpeg')
 
-        imagen_pillow = imagen_pillow.resize((1200, 1200))
+            imagen_pillow = imagen_pillow.resize((1200, 1200))
 
-        # Crea un objeto BytesIO y guarda la imagen en él
-        imagen_temp_io = BytesIO()
-        imagen_pillow.save(imagen_temp_io, format='JPEG')
+            # Crea un objeto BytesIO y guarda la imagen en él
+            imagen_temp_io = BytesIO()
+            imagen_pillow.save(imagen_temp_io, format='JPEG')
 
-        # Crea un objeto InMemoryUploadedFile a partir del BytesIO
-        imagen_temp = InMemoryUploadedFile(
-            imagen_temp_io, None, imagen.name, 'image/jpeg', imagen_temp_io.tell(), None
-        )
+            # Crea un objeto InMemoryUploadedFile a partir del BytesIO
+            imagen_temp = InMemoryUploadedFile(
+                imagen_temp_io, None, imagen.name, 'image/jpeg', imagen_temp_io.tell(), None
+            )
 
-        # Asigna la imagen al campo 'imagenes' del producto
-        producto.imagenes = imagen_temp
-
+            # Asigna la imagen al campo 'imagenes' del producto
+            producto.imagenes = imagen_temp
+            
+            producto.save() 
+        
         # Guarda el producto actualizado en la base de datos
         producto.save()
 
-        return redirect('producto/lista_producto')  # Reemplaza con tu URL de listado de productos
+        return redirect('/producto/listado_producto/')  # Reemplaza con tu URL de listado de productos
 
     categorias = Categoria.objects.all()
     return render(request, 'producto/actualizar_producto.html', {'categoria': categorias, 'producto': producto})

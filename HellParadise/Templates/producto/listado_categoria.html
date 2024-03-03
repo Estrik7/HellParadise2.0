@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{a.nombre}}</td>
                     <td>
-                        <a href="/producto/actualizar_categoria/{{ a.id }}">
+                        <a href="{% url 'actualizar_categoria' a.id %}">
                             <i class="edit icon"></i>
                         </a>
                         <i onclick="borrar('{{ a.id }}','{{a.nombre}}')" class="trash icon"></i>
@@ -42,7 +42,7 @@
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    window.location.href = '/producto/borrar/' + id;
+                    window.location.href = '/categoria/borrar/' + id;
                 } else {
                     swal({
                         icon:'error',
