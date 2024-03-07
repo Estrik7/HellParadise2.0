@@ -3,11 +3,17 @@
     padding: 0;
 }
 
+body{
+  
+}
+
+/*---------------    MENU -----------------*/
 
 .ui.inverted.segment {
   width: 100%;
   margin: 0 auto;
   position: fixed;
+  z-index: 1000; 
 }
 
 .menu_2 {
@@ -33,6 +39,7 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  z-index: 999; 
 }
 
 .slider::before,
@@ -80,25 +87,75 @@ main {
 
 /*-------------------  HOME   --------------------------------*/
 
-.index{
+.index {
   display: flex;
 }
 
-.man{
-  width:"100%";
-  height:"auto";
-  display: flex; 
+.man,
+.woman {
+  position: relative;
 
 }
 
-.woman{
-  width:"100%";
-  height:"auto";
-  display: flex;
+.boton_index {
+  position: absolute; /* Establece el posicionamiento absoluto */
+  top: 50%; /* Lo mueve hacia abajo al 50% del contenedor padre */
+  left: 50%; /* Lo mueve hacia la derecha al 50% del contenedor padre */
+  transform: translate(-50%, -50%); /* Centra el botón completamente en el centro */
+  background-color: transparent; /* Haz el fondo del botón transparente */
+  border: 4px solid transparent; /* Establece un borde transparente */
+  color: white; /* Establece el color del texto del botón */
+  padding: 20px 40px; /* Ajusta el relleno del botón según sea necesario */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  z-index: 1; /* Establece una posición z para que esté sobre la imagen */
+  transition:  1s ease; /* Agrega una transición suave para el cambio de color del borde */
+  font-size: 3em;
+}
+
+.boton_index:hover,
+.boton_index:focus {
+  border-color: white; /* Cambia el color del borde a blanco cuando se pasa el mouse o se enfoca el botón */
 }
 
 img {
   max-width: 100%;
-  height: auto; /* Esto mantendrá la proporción de aspecto de las imágenes */
 }
 
+.descuento {
+  background: rgb(2, 69, 255);
+  color: white;
+  text-align: center;
+  padding: 13px 0;
+  margin-top: 0; /* Elimina el margen superior */
+}
+
+.imagen-contenedor3,
+.imagen-contenedor2,
+.imagen-contenedor1 {
+  flex: 1; /* Cada contenedor de imagen ocupa un tercio del ancho total */
+  position: relative; /* Establece el posicionamiento relativo */
+  text-align: center; /* Centra los elementos horizontalmente */
+  overflow: hidden; /* Evita que las imágenes sobresalgan de los contenedores */
+}
+
+.imagen-contenedor3 img,
+.imagen-contenedor2 img,
+.imagen-contenedor1 img {
+  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+  height: 100%; /* La imagen ocupa todo el espacio vertical disponible */
+  transition: 1s ease;
+}
+
+.imagen-contenedor3:hover img,
+.imagen-contenedor2:hover img,
+.imagen-contenedor1:hover img {
+  transform: scale(0.95); /* Reduce ligeramente el tamaño de la imagen */
+}
+
+
+
+.footer {
+  background: #1B1C1D;
+  text-align: center;
+  
+}
