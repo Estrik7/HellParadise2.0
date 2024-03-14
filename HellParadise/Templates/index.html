@@ -1,5 +1,81 @@
-{% extends 'layourts/base.html' %}
+{% extends 'layouts/base.html' %}
+{% load static %}
 {% block title %}Hell-Paradise{% endblock title %}
 {% block content %}
-    <h1> Home </h1>
+    <div class="index">
+        <div class="man">
+            <button class="boton_index">MEN</button>
+            <img src="{% static 'assets/img/man.png' %}" height="auto" alt="" />
+        </div>
+        <div class="woman">
+            <button class="boton_index">WOMAN</button>
+            <img src="{% static 'assets/img/woman.png' %}" height="auto" alt="" />
+        </div>
+    </div>
+    <div class="descuento">
+        <h4>30% Discount</h4>
+    </div>
+    <div class="slider">
+        <div class="slide-track">
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%"  alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+            <div class="slide">
+                <img src="{% static 'assets/img/carrucel1.png' %}" height="auto" width="100%" alt="" />
+            </div>
+        </div>
+    </div>
+    <div class="descuento">
+        <h4>30% Discount</h4>
+    </div>
+    <div class="index">
+        <div class="imagen-contenedor1">
+            <button class="boton_index">FOOTWEAR</button>
+            <img src="{% static 'assets/img/FOOTWEAR.png' %}"alt="" />
+        </div>
+        <div class="imagen-contenedor2" >
+            <button class="boton_index">ACCESSORIES</button>
+            <img src="{% static 'assets/img/Accessories.png' %}" style="height: 100%;" alt="" />
+        </div>
+        <div class="imagen-contenedor3" >
+            <button class="boton_index">Head-covering</button>
+            <img src="{% static 'assets/img/Head-covering.png' %}"alt="" />
+        </div>
+    </div>
 {% endblock content %}

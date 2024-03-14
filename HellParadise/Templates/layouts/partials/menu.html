@@ -1,0 +1,42 @@
+{% load static %}
+<nav class="ui inverted segment">
+    <div class="ui inverted secondary pointing menu">
+        <img src="{% static 'assets/img/logo_menu.png' %}" id="logo_menu"> 
+        <div class="menu_2">
+            <a href="{% url 'index' %}" class="active item">Home</a>
+            <div class="ui pointing dropdown link item">
+                <span class="text">Man</span>
+            </div>
+            <div class="ui pointing dropdown link item">
+                <span class="text">Woman</span>
+            </div>
+            <div class="ui pointing dropdown link item">
+                <span class="text">Accessories</span>
+            </div>
+        </div>
+        <div class="right menu">
+            {% if pertenece_al_grupo%}
+                <div class="ui dropdown item">
+                    <span class="text">Operator Functions</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="/insertar_producto/" class="item">Insertar producto (trabajo en progreso)</a>
+                        <a href="/producto/listado_producto/" class="item">Listado producto (Por desarrollar)</a>
+                        <a href="/insertar_categoria/" class="item">Insertar categoria</a>
+                        <a href="/producto/listado_categoria/" class="item">Listado categoria</a>
+                    </div>
+                    {% endif %}
+            </div>
+            <i class="align justify icon" style="padding: 13px 20px 0 20px;"> 
+            <div class="ui right sidebar inverted vertical menu">
+                {% if request.user.is_authenticated %}
+                    <a href="/logout/" class="item">Log Out</a>
+                {% else %}
+                    <a href="/registro_usuario/" class="item">Registro</a>
+                    <a href="/login/" class="item">Log In</a>
+                {% endif %}
+            </div>
+            </i>
+        </div>
+    </div>  
+</nav>

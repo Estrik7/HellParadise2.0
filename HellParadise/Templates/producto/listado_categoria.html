@@ -1,4 +1,4 @@
-{% extends 'layourts/base.html' %}
+{% extends 'layouts/base.html' %}
 {% load static %}
 {% block title %}Lista-C{% endblock title %}
 {% block content %}
@@ -9,14 +9,17 @@
     <div class="ui container">
         <table class="ui celled table">
             <thead>
-                <th>Nombre</th>
-            </tr></thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
             <tbody>
                 {% for a in categorias %}
                 <tr>
                     <td>{{a.nombre}}</td>
                     <td>
-                        <a href="/producto/actualizar_categoria/{{ a.id }}">
+                        <a href="{% url 'actualizar_categoria' a.id %}">
                             <i class="edit icon"></i>
                         </a>
                         <i onclick="borrar('{{ a.id }}','{{a.nombre}}')" class="trash icon"></i>

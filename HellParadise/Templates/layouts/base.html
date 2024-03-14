@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/semantic.css' %}">
+    {% block style %}{% endblock %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body style="background: linear-gradient(#ffffffea,#313131ea 50%);">
+    <header>
+        {% block header%}
+            {% include 'layouts/partials/menu.html' %}
+        {% endblock header %}
+    </header>
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+    <footer>
+        {% include 'layouts/partials/footer.html' %} 
+    </footer>
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/semantic.js' %}"></script>
+    <script>
+        $('.ui.dropdown').dropdown();
+    </script>
+    {% block scripts %}{% endblock scripts %} 
+</body>
+</html>
